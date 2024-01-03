@@ -50,7 +50,7 @@ def text(x,y,text,color,font,disp):
     global XF0,XF,YF,COLOR,display
     display=disp
     XF0=x;XF=x
-    YF=y-10
+    YF=y
     COLOR=color
     render_text(text,font)
     
