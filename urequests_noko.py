@@ -4,7 +4,7 @@ Adapted for Micropython by Alex Cowan <acowan@gmail.com>
 
 Works in a similar way to python-requests http://docs.python-requests.org/en/latest/
 
-TimoNoko: _parse_result not needed
+Timonoko: you cannot split on '/r/n"
 
 """
 
@@ -30,7 +30,7 @@ class URLOpener:
             s.settimeout(5)
             s.connect(addr)
         else:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_SEC)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.settimeout(5)
             s = ssl.wrap_socket(sock)
             s.connect(socket.getaddrinfo(host, port)[0][4])
@@ -60,13 +60,14 @@ class URLOpener:
             if len(recv) == 0: break
             self.text += recv.decode()
         s.close()
-#        self._parse_result() Why is this, I want it raw /timonoko
+        self._parse_result() 
 
     def read(self):
         return self.text
 
     def _parse_result(self):
-        self.text = self.text.split('\r\n')
+#        self.text = self.text.split('\r\n')
+        self.text = self.text.split('\n') # This is ypur problem
         while self.text:
             line = self.text.pop(0).strip()
             if line == '':
