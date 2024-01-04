@@ -60,7 +60,7 @@ class URLOpener:
             if len(recv) == 0: break
             self.text += recv.decode()
         s.close()
-#        self._parse_result() Why is this, I it raw
+#        self._parse_result() Why is this, I want it raw /timonoko
 
     def read(self):
         return self.text
