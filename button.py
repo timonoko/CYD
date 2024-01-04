@@ -1,6 +1,6 @@
 import gc
 import time,os
-import urequests2
+import urequests_noko as urequests
 from ili9341 import Display, color565
 from xpt2046 import Touch
 from machine import idle, Pin, SPI
@@ -51,9 +51,9 @@ touch = Touch(spi2,cs=Pin(33),int_pin=Pin(36),int_handler=press)
 def urequ(x):
         print(x)
         try:
-            print(urequests2.get(x))
+            urequests.get(x)
         except: 
-            print(urequests2.put(x))
+            urequests.get(x)
             print('EI ONNISTU')
             time.sleep(2)
 
@@ -62,6 +62,11 @@ def t():
     urequ('http://192.168.1.64:80/5/on')
     urequ('http://192.168.1.64:80/5/off')
 
+button(t,"TEST",30,30,100,100,BLACK,YELLOW,'r30')
+
+import netti
+
+display.clear(color565(0, 0, 10))
 
 def rON(x):
     urequ('http://192.168.1.65/r%son'%x)
@@ -102,6 +107,7 @@ button(jOFF,"JUOTIN",130,260,70,40,WHITE,RED,'r15')
 while True:
     time.sleep(1)
 
+display.clear(BLUE)
 
 """
 sta_if = network.WLAN(network.STA_IF)
