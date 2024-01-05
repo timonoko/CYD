@@ -4,7 +4,8 @@ Adapted for Micropython by Alex Cowan <acowan@gmail.com>
 
 Works in a similar way to python-requests http://docs.python-requests.org/en/latest/
 
-Timonoko: you cannot do split on '/r/n"  @69
+Timonoko: you cannot split on '/r/n" @69
+Timonoko: redirection calls wrong Urlopen @141
 
 """
 
@@ -135,7 +136,9 @@ def urlopen(url, method="GET", params = {}, data = {}, headers = {}, cookies = {
                 [scheme, host, path, data] = urlparse(orig_url)
                 url = '%s://%s%s' % (scheme, host, url)
             if url:
-                result = URLOpener(url)
+                print("noko=",url)
+#                result = URLOpener(url)
+                result = urlopen(url)
             else:
                 raise Exception('URL returned a redirect but one was not found')
         else:
