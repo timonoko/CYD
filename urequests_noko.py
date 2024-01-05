@@ -136,7 +136,6 @@ def urlopen(url, method="GET", params = {}, data = {}, headers = {}, cookies = {
                 [scheme, host, path, data] = urlparse(orig_url)
                 url = '%s://%s%s' % (scheme, host, url)
             if url:
-                print("noko=",url)
 #                result = URLOpener(url)
                 result = urlopen(url)
             else:
